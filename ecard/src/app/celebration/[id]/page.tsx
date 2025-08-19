@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 import CelebrationView from "@/components/celebration/celebration-view";
 import PreviewLayout from "@/components/preview/preview-layout";
 
@@ -22,7 +23,7 @@ async function getCelebrationData(id: string) {
         const card = await cardResponse.json();
         
         // 获取祝福数据
-        const wishesResponse = await fetch(`/api/cards/${id}/wishes`, {
+        const wishesResponse = await fetch(`${baseUrl}/api/cards/${id}/wishes`, {
           cache: 'no-store'
         });
         
@@ -35,7 +36,7 @@ async function getCelebrationData(id: string) {
         }
         
         // 获取参与者数据
-        const participationsResponse = await fetch(`/api/cards/${id}/participations`, {
+        const participationsResponse = await fetch(`${baseUrl}/api/cards/${id}/participations`, {
           cache: 'no-store'
         });
         
