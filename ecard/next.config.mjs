@@ -15,6 +15,17 @@ const nextConfig = {
       ignored: ['**/backup/**']
     };
     return config;
+  },
+  // 添加自定义配置
+  env: {
+    // 设置API基础URL
+    NEXT_PUBLIC_API_BASE_URL: process.env.VERCEL_URL 
+      ? `https://${process.env.VERCEL_URL}` 
+      : process.env.NEXT_PUBLIC_API_URL || 'https://www.happyworkanniversary.net'
+  },
+  // 允许服务器组件中的fetch使用相对URL
+  experimental: {
+    serverActions: true
   }
 };
 

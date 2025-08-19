@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { headers } from "next/headers";
 import CelebrationView from "@/components/celebration/celebration-view";
 import PreviewLayout from "@/components/preview/preview-layout";
 
@@ -12,10 +11,12 @@ export const metadata: Metadata = {
 // 从API获取庆祝数据的函数
 async function getCelebrationData(id: string) {
   try {
+    // 使用硬编码的绝对URL
+    const baseUrl = "https://www.happyworkanniversary.net";
+    
     try {
-      // 使用相对URL直接访问API
       // 获取贺卡数据
-      const cardResponse = await fetch(`/api/cards/${id}`, {
+      const cardResponse = await fetch(`${baseUrl}/api/cards/${id}`, {
         cache: 'no-store' // 确保获取最新数据
       });
       
