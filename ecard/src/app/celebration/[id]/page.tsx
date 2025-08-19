@@ -11,14 +11,10 @@ export const metadata: Metadata = {
 // 从API获取庆祝数据的函数
 async function getCelebrationData(id: string) {
   try {
-    // 构建完整的 URL
-    const baseUrl = process.env.VERCEL_URL 
-      ? `https://${process.env.VERCEL_URL}` 
-      : process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-    
     try {
+      // 使用相对URL直接访问API
       // 获取贺卡数据
-      const cardResponse = await fetch(`${baseUrl}/api/cards/${id}`, {
+      const cardResponse = await fetch(`/api/cards/${id}`, {
         cache: 'no-store' // 确保获取最新数据
       });
       
@@ -26,7 +22,7 @@ async function getCelebrationData(id: string) {
         const card = await cardResponse.json();
         
         // 获取祝福数据
-        const wishesResponse = await fetch(`${baseUrl}/api/cards/${id}/wishes`, {
+        const wishesResponse = await fetch(`/api/cards/${id}/wishes`, {
           cache: 'no-store'
         });
         
@@ -39,7 +35,7 @@ async function getCelebrationData(id: string) {
         }
         
         // 获取参与者数据
-        const participationsResponse = await fetch(`${baseUrl}/api/cards/${id}/participations`, {
+        const participationsResponse = await fetch(`/api/cards/${id}/participations`, {
           cache: 'no-store'
         });
         
