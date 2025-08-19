@@ -55,18 +55,18 @@ async function getCelebrationData(id: string) {
         const initiator = participations.find((p: any) => p.status === 'contributed') || participations[0];
         
         // 提取标题中的年份信息
-        const yearMatch = card.title.match(/(\d+)周年/);
+        const yearMatch = card.title.match(/(\d+)周年/) || card.title.match(/(\d+)/);
         const years = yearMatch ? parseInt(yearMatch[1]) : 1;
         
         return {
           celebrant: {
-            name: card.recipientName || '同事', // 使用新字段
+            name: card.recipientName || '同事', // 接收祝福的人
             years: years,
             department: card.description?.match(/为(.+?)庆祝/)?.[1] || '公司',
             celebrationDate: card.celebrationDate,
           },
           initiator: {
-            name: card.senderName || initiator?.participantName || '团队', // 优先使用新字段
+            name: card.senderName || (initiator?.participantName || '团队'), // 发送祝福的人
           },
           wishes: wishes.map((wish: any) => ({
             id: wish.id || `wish-${Math.random().toString(36).substr(2, 9)}`,
@@ -74,7 +74,7 @@ async function getCelebrationData(id: string) {
             message: wish.content || '',
             isInitiator: initiator ? (wish.participation?.id === initiator?.id) : false,
             createdAt: wish.createdAt || new Date().toISOString(),
-          })),
+          })).filter((wish: any) => wish.message && wish.message.trim() !== ''),
         };
       }
     } catch (error) {

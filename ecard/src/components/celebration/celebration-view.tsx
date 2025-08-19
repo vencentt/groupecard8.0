@@ -56,7 +56,7 @@ export default function CelebrationView({
 
   return (
     <div className="space-y-8">
-      {/* 新增的贺卡头部 */}
+      {/* 贺卡头部 */}
       <CardHeader 
         title={`Happy ${celebrant.years}${getOrdinalSuffix(celebrant.years)} Work Anniversary!`}
         description={`Celebrating ${celebrant.name} from ${initiator.name} on ${formatDate(celebrant.celebrationDate)}`}
