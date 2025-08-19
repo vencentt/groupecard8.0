@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 基本用户模型
+model User {
+  id            String          @id @default(cuid())
+  email         String          @unique
+  name          String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  // 新增字段
+  cards         Card[]          @relation("CardCreator")
+  participations Participation[]
+}
+
+// 电子贺卡模型
+model Card {
+  id              String          @id @default(cuid())
+  title           String
+  description     String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  // 新增字段
+  creatorId       String?
+  creator         User?           @relation("CardCreator", fields: [creatorId], references: [id])
+  recipientName   String          @default("") // 接收者姓名
+  senderName      String          @default("") // 发送方/团队名称
+  celebrationDate DateTime
+  status          String          @default("collecting") // collecting, completed
+  wishes          Wish[]
+  participations  Participation[]
+  
+  @@index([creatorId])
+  @@index([status])
+}
+
+// 参与者模型
+model Participation {
+  id              String    @id @default(cuid())
+  cardId          String
+  card            Card      @relation(fields: [cardId], references: [id])
+  userId          String?
+  user            User?     @relation(fields: [userId], references: [id])
+  participantName String
+  participantEmail String?
+  status          String    @default("invited") // invited, contributed
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  wish            Wish?
+  
+  @@index([cardId])
+  @@index([userId])
+}
+
+// 祝福内容模型
+model Wish {
+  id              String        @id @default(cuid())
+  content         String
+  participationId String        @unique
+  participation   Participation @relation(fields: [participationId], references: [id])
+  cardId          String
+  card            Card          @relation(fields: [cardId], references: [id])
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  
+  @@index([cardId])
+}
