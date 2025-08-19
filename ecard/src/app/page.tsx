@@ -51,37 +51,55 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card>
-            <CardHeader>
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                <span className="text-2xl font-bold">1</span>
+            <CardHeader className="flex flex-col items-center">
+              <div className="w-40 h-40 mb-4">
+                <Image 
+                  src="/images/how-to-choose.svg" 
+                  alt="Choose a card" 
+                  width={300} 
+                  height={300}
+                  className="w-full h-full"
+                />
               </div>
-              <CardTitle>Create</CardTitle>
+              <CardTitle>Choose a Card</CardTitle>
             </CardHeader>
-            <CardContent>
-              <p>Start a celebration page for your colleague&apos;s work anniversary with a personal message.</p>
+            <CardContent className="text-center">
+              <p>Select a beautiful card to start celebrating your colleague's work anniversary.</p>
             </CardContent>
           </Card>
           
           <Card>
-            <CardHeader>
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                <span className="text-2xl font-bold">2</span>
+            <CardHeader className="flex flex-col items-center">
+              <div className="w-40 h-40 mb-4">
+                <Image 
+                  src="/images/how-to-card-open.svg" 
+                  alt="Collect wishes" 
+                  width={300} 
+                  height={300}
+                  className="w-full h-full"
+                />
               </div>
-              <CardTitle>Collect</CardTitle>
+              <CardTitle>Collect Wishes</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-center">
               <p>Share the link with team members to collect their congratulatory messages.</p>
             </CardContent>
           </Card>
           
           <Card>
-            <CardHeader>
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                <span className="text-2xl font-bold">3</span>
+            <CardHeader className="flex flex-col items-center">
+              <div className="w-40 h-40 mb-4">
+                <Image 
+                  src="/images/how-to-sign.svg" 
+                  alt="Celebrate together" 
+                  width={300} 
+                  height={300}
+                  className="w-full h-full"
+                />
               </div>
-              <CardTitle>Celebrate</CardTitle>
+              <CardTitle>Celebrate Together</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-center">
               <p>Share the final celebration page with your colleague on their special day.</p>
             </CardContent>
           </Card>
