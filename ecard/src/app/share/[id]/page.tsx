@@ -159,7 +159,7 @@ export default function SharePage({ params }: SharePageProps) {
       </div>
       
       <h1 className="text-3xl font-bold mb-6 text-center">
-        {savedCard.status === "collecting" ? "Share Wishes Collection Link" : "Share Final Celebration Page"}
+        {savedCard.status === "collecting" ? "Share Work Anniversary Wishes Collection Link" : "Share Work Anniversary Celebration Page"}
       </h1>
       <p className="text-muted-foreground mb-8 text-center">
         {savedCard.status === "collecting" 

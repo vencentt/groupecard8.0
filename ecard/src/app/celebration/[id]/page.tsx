@@ -11,10 +11,8 @@ export const metadata: Metadata = {
 // 从API获取庆祝数据的函数
 async function getCelebrationData(id: string) {
   try {
-    // 构建完整的 URL
-    const baseUrl = process.env.VERCEL_URL 
-      ? `https://${process.env.VERCEL_URL}` 
-      : process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+    // 使用硬编码的绝对URL
+    const baseUrl = "https://www.happyworkanniversary.net";
     
     try {
       // 获取贺卡数据

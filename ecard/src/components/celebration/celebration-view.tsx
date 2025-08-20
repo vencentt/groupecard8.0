@@ -57,10 +57,14 @@ export default function CelebrationView({
   return (
     <div className="space-y-8">
       {/* 贺卡头部 */}
-      <CardHeader 
-        title={`Happy ${celebrant.years}${getOrdinalSuffix(celebrant.years)} Work Anniversary!`}
-        description={`Celebrating ${celebrant.name} from ${initiator.name} on ${formatDate(celebrant.celebrationDate)}`}
-      />
+      <div className="bg-gradient-to-r from-blue-500 to-cyan-400 text-white p-8 rounded-lg text-center">
+        <h1 className="text-3xl md:text-4xl font-bold mb-2">
+          Happy {celebrant.years}{getOrdinalSuffix(celebrant.years)} Work Anniversary!
+        </h1>
+        <p className="text-xl opacity-90">
+          Celebrating {celebrant.name} from {initiator.name} on {formatDate(celebrant.celebrationDate)}
+        </p>
+      </div>
       
       
       {/* 祝福墙 */}

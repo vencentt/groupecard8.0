@@ -202,7 +202,7 @@ export default function CreatePage() {
 
   return (
     <div className="container max-w-3xl py-10">
-      <h1 className="text-3xl font-bold mb-6 text-center">Create Work Anniversary Card</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">Create Work Anniversary Messages & Cards</h1>
       <p className="text-muted-foreground mb-8 text-center">
         Fill in the basic information and your wishes here. After creation, you'll get a shareable link.
       </p>

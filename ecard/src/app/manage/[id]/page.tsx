@@ -243,20 +243,23 @@ export default function ManagePage({ params }: { params: { id: string } }) {
 
   return (
     <div className="container max-w-4xl py-10">
-      {/* 顶部导航按钮 */}
-      <div className="flex justify-between items-center mb-6">
-        <Button 
-          variant="outline" 
-          onClick={() => router.push("/my-activities")}
-        >
-          Back to My Activities
-        </Button>
-        <Button 
-          variant="outline" 
-          onClick={() => router.push(`/share/${params.id}`)}
-        >
-          Share & Preview
-        </Button>
+      {/* 顶部标题和导航按钮 */}
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold mb-4">Manage Work Anniversary Card</h1>
+        <div className="flex justify-between items-center">
+          <Button 
+            variant="outline" 
+            onClick={() => router.push("/my-activities")}
+          >
+            Back to My Activities
+          </Button>
+          <Button 
+            variant="outline" 
+            onClick={() => router.push(`/share/${params.id}`)}
+          >
+            Share & Preview
+          </Button>
+        </div>
       </div>
       
       {/* 顶部信息和进度指示器 */}
@@ -335,7 +338,7 @@ export default function ManagePage({ params }: { params: { id: string } }) {
                   </div>
                 ) : (
                   <div className="flex items-center">
-                    <h1 className="text-2xl font-bold">{cardData.employeeName}</h1>
+                    <h2 className="text-2xl font-bold">{cardData.employeeName}</h2>
                     {cardData.status !== "completed" && (
                       <Button 
                         variant="outline" 

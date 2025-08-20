@@ -67,9 +67,9 @@ export default function SuccessView({ id, employeeName }: SuccessViewProps) {
               <div className="bg-muted text-muted-foreground rounded-full w-8 h-8 flex items-center justify-center">3</div>
             </div>
           </div>
-          <CardTitle className="text-center text-2xl">祝福创建成功！</CardTitle>
+          <CardTitle className="text-center text-2xl">Card Created Successfully!</CardTitle>
           <CardDescription className="text-center">
-            现在您可以邀请同事为{employeeName}添加祝福
+            Now you can invite colleagues to add wishes for {employeeName}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -81,44 +81,24 @@ export default function SuccessView({ id, employeeName }: SuccessViewProps) {
             </h3>
             <p className="text-sm mb-4">Share this link to invite colleagues to add wishes for {employeeName}</p>
             
-            {/* 链接输入框和复制按钮组合 */}
-            <div className="relative mb-4">
+            {/* 链接输入框 - 没有复制按钮 */}
+            <div className="mb-4">
               <Input 
                 value={contributeLink} 
                 readOnly 
-                className="pr-24 bg-white border-primary/30 focus:border-primary"
+                className="bg-white border-primary/30 focus:border-primary"
               />
-              <Button 
-                variant="default" 
-                className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8"
-                onClick={(e) => copyToClipboard(contributeLink, e)}
-                type="button"
-              >
-                <CopyIcon className="h-4 w-4 mr-1" />
-                Copy
-              </Button>
             </div>
             
-            {/* 主要分享按钮 - 突出显示 */}
+            {/* 主要复制按钮 - 突出显示 */}
             <Button 
               className="w-full bg-primary hover:bg-primary/90 text-white"
               size="lg"
               type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                if (navigator.share) {
-                  navigator.share({
-                    title: `Join ${employeeName}'s Work Anniversary Celebration`,
-                    text: `Please click the link to add your wishes for ${employeeName}'s work anniversary`,
-                    url: contributeLink,
-                  });
-                } else {
-                  copyToClipboard(contributeLink, e);
-                }
-              }}
+              onClick={(e) => copyToClipboard(contributeLink, e)}
             >
-              <Share2Icon className="mr-2 h-5 w-5" />
-              Share Invitation Link
+              <CopyIcon className="mr-2 h-5 w-5" />
+              Copy Invitation Link
             </Button>
           </div>
           

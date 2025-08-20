@@ -84,7 +84,7 @@ export default function MyActivities() {
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Home
         </Link>
-        <h1 className="text-3xl font-bold mt-4">My Activities</h1>
+        <h1 className="text-3xl font-bold mt-4">My Work Anniversary Activities</h1>
         <p className="text-muted-foreground">View and manage your created celebrations</p>
       </div>
 
