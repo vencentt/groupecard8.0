@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Google Analytics 代码 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-RXXY2CE4DV"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-RXXY2CE4DV');
+          `}
+        </Script>
+      </head>
       <body className={`${inter.className} flex flex-col min-h-screen`}>
         <SiteHeader />
         <div className="flex-1">{children}</div>
