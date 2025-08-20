@@ -22,6 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Canonical Link */}
+        <link rel="canonical" href="https://www.happyworkanniversary.net/" />
+        
         {/* Google Analytics */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXY2CE4DV" />
         <Script id="google-analytics">
