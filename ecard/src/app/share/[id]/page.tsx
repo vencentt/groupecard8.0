@@ -1,5 +1,6 @@
 "use client";
 
+import { Metadata } from "next";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";

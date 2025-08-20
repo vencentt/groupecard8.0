@@ -17,7 +17,7 @@ export function SiteFooter() {
           </div>
           
           <div>
-            <h3 className="font-medium mb-3">Quick Links</h3>
+            <div className="font-medium mb-3">Quick Links</div>
             <ul className="space-y-2">
               <li>
                 <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -38,7 +38,7 @@ export function SiteFooter() {
           </div>
           
           <div>
-            <h3 className="font-medium mb-3">About</h3>
+            <div className="font-medium mb-3">About</div>
             <ul className="space-y-2">
               <li>
                 <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">

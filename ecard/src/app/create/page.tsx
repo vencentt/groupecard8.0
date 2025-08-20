@@ -1,5 +1,6 @@
 "use client";
 
+import { Metadata } from "next";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import SuccessView from "@/components/create/success-view";
@@ -208,9 +209,10 @@ export default function CreatePage() {
       </p>
 
       <form onSubmit={handleSubmit}>
+        <h2 className="sr-only">Work Anniversary Card Creation Form</h2>
         <Card>
           <CardHeader>
-            <CardTitle>Create New Celebration</CardTitle>
+            <CardTitle as="h3">Create New Work Anniversary Celebration</CardTitle>
             <CardDescription>
               Fill in the information below to create a new work anniversary celebration
             </CardDescription>

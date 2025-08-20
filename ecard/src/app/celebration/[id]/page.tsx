@@ -4,8 +4,9 @@ import CelebrationView from "@/components/celebration/celebration-view";
 import PreviewLayout from "@/components/preview/preview-layout";
 
 export const metadata: Metadata = {
-  title: "Work Anniversary Celebration",
-  description: "View all wishes for your work anniversary",
+  title: "Work Anniversary Celebration | Happy work anniversary",
+  description: "Celebrate work milestones with personalized anniversary cards and messages from colleagues. View all wishes for your professional anniversary.",
+  keywords: "work anniversary celebration, work anniversary wishes, professional milestone"
 };
 
 // 从API获取庆祝数据的函数
@@ -143,6 +144,7 @@ export default async function CelebrationPage({
   // 准备展示内容
   const celebrationContent = (
     <div className="container max-w-4xl py-4">
+      <h1 className="sr-only">{celebrationData.celebrant.name}'s {celebrationData.celebrant.years} Year Work Anniversary Celebration</h1>
       <CelebrationView 
         celebrationId={params.id}
         celebrant={celebrationData.celebrant}

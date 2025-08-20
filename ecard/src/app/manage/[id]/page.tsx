@@ -1,5 +1,6 @@
 "use client";
 
+import { Metadata } from "next";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -560,10 +561,10 @@ export default function ManagePage({ params }: { params: { id: string } }) {
       {currentStep === 1 && (
         <Card className="mb-6 border-primary/50">
           <CardHeader>
-            <CardTitle className="flex items-center">
-              <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 inline-flex items-center justify-center text-sm mr-2">1</span>
-              Manage Collection Link
-            </CardTitle>
+          <CardTitle as="h2" className="flex items-center">
+            <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 inline-flex items-center justify-center text-sm mr-2">1</span>
+            Manage Work Anniversary Collection Link
+          </CardTitle>
             <CardDescription>
               Share this link with colleagues to collect wishes for {cardData.employeeName}
             </CardDescription>
@@ -648,9 +649,9 @@ export default function ManagePage({ params }: { params: { id: string } }) {
         <div className="space-y-6">
           <Card className="border-primary/50">
             <CardHeader>
-              <CardTitle className="flex items-center">
+              <CardTitle as="h2" className="flex items-center">
                 <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 inline-flex items-center justify-center text-sm mr-2">2</span>
-                Manage Collected Wishes
+                Manage Work Anniversary Wishes
               </CardTitle>
               <CardDescription>
                 {cardData.wishes.length} wishes have been collected so far
@@ -711,9 +712,9 @@ export default function ManagePage({ params }: { params: { id: string } }) {
         <div className="space-y-6">
           <Card className="border-primary/50">
             <CardHeader>
-              <CardTitle className="flex items-center">
+              <CardTitle as="h2" className="flex items-center">
                 <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 inline-flex items-center justify-center text-sm mr-2">3</span>
-                Manage Final Celebration Page
+                Manage Work Anniversary Celebration Page
               </CardTitle>
               <CardDescription>
                 Collection completed with {cardData.wishes.length} wishes

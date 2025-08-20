@@ -3,8 +3,9 @@ import ContributeForm from "@/components/contribute/contribute-form";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Contribute to Work Anniversary Card",
-  description: "Add your wishes to a colleague's work anniversary card",
+  title: "Add Work Anniversary Wishes | Happy work anniversary",
+  description: "Share your personal message and wishes for a colleague's work anniversary celebration. Add your contribution to make their professional milestone special.",
+  keywords: "work anniversary wishes, work anniversary message, professional celebration"
 };
 
 export default function ContributePage({ params }: { params: { id: string } }) {
@@ -16,6 +17,8 @@ export default function ContributePage({ params }: { params: { id: string } }) {
           Share your congratulations for your colleague&apos;s work anniversary
         </p>
       </div>
+      
+      <h2 className="sr-only">Work Anniversary Wishes Form</h2>
       
       <ContributeForm cardId={params.id} />
     </div>
