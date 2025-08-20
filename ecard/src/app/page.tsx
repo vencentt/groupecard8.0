@@ -11,7 +11,7 @@ export default function Home() {
       <section className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 mb-16">
         <div className="flex-1 space-y-6">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-            Happy Work Anniversary
+            Happy Work Anniversary - Create & Share Celebration Cards
           </h1>
           <p className="text-xl text-muted-foreground">
             Create memorable work anniversary celebrations for your colleagues with personalized messages from the team.

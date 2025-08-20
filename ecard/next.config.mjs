@@ -8,6 +8,10 @@ const nextConfig = {
     // 忽略所有 ESLint 错误
     ignoreDuringBuilds: true,
   },
+  // 配置允许的图片域名
+  images: {
+    domains: ['images.unsplash.com'],
+  },
   // 排除备份文件夹
   webpack: (config) => {
     config.watchOptions = {
@@ -25,7 +29,8 @@ const nextConfig = {
   },
   // 允许服务器组件中的fetch使用相对URL
   experimental: {
-    serverActions: true
+    // Next.js 14中serverActions已默认启用，可以移除此配置
+    // serverActions: true
   }
 };
 
