@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "About Happy Work Anniversary | Our Mission and Story",
+  title: "About Happy Work Anniversary | Work Anniversary Messages & Celebrations",
   description: "Learn about Happy Work Anniversary platform, our mission to celebrate workplace milestones, and how we help teams create meaningful work anniversary messages and celebrations.",
   canonical: "https://www.happyworkanniversary.net/about",
+  keywords: "work anniversary messages, work anniversary, work anniversary celebrations, workplace milestones, employee recognition",
 };
 
 export default function AboutPage() {
@@ -16,7 +17,7 @@ export default function AboutPage() {
       <div className="text-center mb-12">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">About Happy Work Anniversary</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Creating meaningful workplace celebrations that strengthen team bonds and recognize professional milestones
+          Creating meaningful work anniversary messages and celebrations that strengthen team bonds and recognize professional milestones
         </p>
       </div>
 
@@ -26,13 +27,13 @@ export default function AboutPage() {
           <div className="md:w-1/2">
             <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
             <p className="mb-4">
-              At Happy Work Anniversary, we believe that recognizing professional milestones is essential for building strong, engaged teams and fostering a positive workplace culture.
+              At Happy Work Anniversary, we believe that recognizing professional milestones with thoughtful work anniversary messages is essential for building strong, engaged teams and fostering a positive workplace culture.
             </p>
             <p className="mb-4">
-              Our mission is to make work anniversary celebrations meaningful, collaborative, and effortless. We provide a platform that enables teams to create personalized celebrations that truly honor the contributions and growth of their colleagues.
+              Our mission is to make work anniversary celebrations meaningful, collaborative, and effortless. We provide a platform that enables teams to create personalized work anniversary messages and celebrations that truly honor the contributions and growth of their colleagues.
             </p>
             <p>
-              Through thoughtful work anniversary messages and collaborative celebrations, we help organizations show authentic appreciation for their team members' dedication and loyalty.
+              Through thoughtful work anniversary messages and collaborative celebrations, we help organizations show authentic appreciation for their team members' dedication and loyalty, strengthening workplace relationships and boosting morale.
             </p>
           </div>
           <div className="md:w-1/2">
@@ -53,16 +54,16 @@ export default function AboutPage() {
         <h2 className="text-2xl font-bold mb-6 text-center">Our Story</h2>
         <div className="bg-muted p-6 rounded-lg">
           <p className="mb-4">
-            Happy Work Anniversary was born from a simple observation: while work anniversaries are significant milestones in people's professional lives, they often go unnoticed or are celebrated in hasty, impersonal ways.
+            Happy Work Anniversary was born from a simple observation: while work anniversaries are significant milestones in people's professional lives, they often go unnoticed or are celebrated with generic work anniversary messages that lack personal meaning.
           </p>
           <p className="mb-4">
-            Our founder experienced this firsthand when a colleague's 10-year work anniversary was acknowledged with just a brief email. Seeing the missed opportunity to celebrate such a significant milestone properly, the idea for a dedicated work anniversary celebration platform was born.
+            Our founder experienced this firsthand when a colleague's 10-year work anniversary was acknowledged with just a brief email containing generic work anniversary wishes. Seeing the missed opportunity to celebrate such a significant milestone with meaningful work anniversary messages, the idea for a dedicated work anniversary celebration platform was born.
           </p>
           <p className="mb-4">
-            We launched in 2023 with a clear purpose: to transform work anniversary celebrations from afterthoughts into meaningful experiences that strengthen workplace relationships and recognize professional journeys.
+            We launched in 2023 with a clear purpose: to transform work anniversary messages and celebrations from afterthoughts into meaningful experiences that strengthen workplace relationships and recognize professional journeys.
           </p>
           <p>
-            Today, Happy Work Anniversary helps teams across industries create collaborative celebrations that truly honor their colleagues' contributions and milestones, fostering stronger workplace connections and boosting employee engagement.
+            Today, Happy Work Anniversary helps teams across industries create collaborative celebrations with personalized work anniversary messages that truly honor their colleagues' contributions and milestones, fostering stronger workplace connections and boosting employee engagement.
           </p>
         </div>
       </section>
@@ -192,11 +193,50 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Work Anniversary Messages Section - NEW */}
+      <section className="mb-16">
+        <h2 className="text-2xl font-bold mb-6 text-center">Crafting Meaningful Work Anniversary Messages</h2>
+        <div className="bg-muted p-6 rounded-lg">
+          <p className="mb-4">
+            Creating impactful work anniversary messages is an art that combines personal recognition with professional appreciation. At Happy Work Anniversary, we believe the most effective work anniversary messages share these key qualities:
+          </p>
+          <ul className="space-y-3 mb-4">
+            <li className="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary mr-2 mt-1 flex-shrink-0">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+              <span><strong>Personalization</strong>: The best work anniversary messages reference specific contributions, qualities, or memories that make the recipient feel truly seen and valued.</span>
+            </li>
+            <li className="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary mr-2 mt-1 flex-shrink-0">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+              <span><strong>Authenticity</strong>: Genuine work anniversary messages that come from the heart resonate more deeply than formulaic congratulations.</span>
+            </li>
+            <li className="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary mr-2 mt-1 flex-shrink-0">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+              <span><strong>Recognition</strong>: Effective work anniversary messages acknowledge both professional achievements and personal growth over the years.</span>
+            </li>
+            <li className="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary mr-2 mt-1 flex-shrink-0">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+              <span><strong>Forward-looking</strong>: The best work anniversary messages not only celebrate the past but also express excitement for the recipient's future contributions and growth.</span>
+            </li>
+          </ul>
+          <p>
+            Our platform makes it easy to collect and present meaningful work anniversary messages from entire teams, creating a collaborative celebration that shows the true impact of a colleague's presence and contributions.
+          </p>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="text-center">
-        <h2 className="text-2xl font-bold mb-4">Ready to Create Meaningful Work Anniversary Celebrations?</h2>
+        <h2 className="text-2xl font-bold mb-4">Ready to Create Meaningful Work Anniversary Messages?</h2>
         <p className="mb-6 text-muted-foreground max-w-2xl mx-auto">
-          Join thousands of teams using Happy Work Anniversary to recognize professional milestones and strengthen workplace connections.
+          Join thousands of teams using Happy Work Anniversary to craft personalized work anniversary messages and create celebrations that truly honor professional milestones.
         </p>
         <Link href="/create">
           <Button size="lg" className="px-8">

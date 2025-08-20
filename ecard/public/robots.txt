@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /manage/
+Disallow: /contribute/
+
+# 站点地图
+Sitemap: https://www.happyworkanniversary.net/sitemap.xml
+
+# 爬虫抓取频率
+Crawl-delay: 10
