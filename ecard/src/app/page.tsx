@@ -8,8 +8,10 @@ import { MyActivitiesSection } from "@/components/my-activities-section";
 export const metadata: Metadata = {
   title: "Create & Share Happy Work Anniversary Cards | Happy Work Anniversary",
   description: "Create memorable happy work anniversary celebrations with personalized messages from the team. Recognize professional milestones with thoughtful digital cards.",
-  canonical: "https://www.happyworkanniversary.net/",
   keywords: "happy work anniversary, work anniversary cards, work anniversary celebrations, work anniversary wishes, professional milestones",
+  alternates: {
+    canonical: "https://www.happyworkanniversary.net/",
+  },
 };
 
 export default function Home() {
@@ -30,9 +32,11 @@ export default function Home() {
                 Create Celebration
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto">
-              How It Works
-            </Button>
+            <Link href="/preview">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                Preview Card
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="flex-1 flex justify-center">
