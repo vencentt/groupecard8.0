@@ -134,6 +134,9 @@ export default async function CelebrationPage({
   const isPreview = searchParams?.preview === "true";
   const isFinal = searchParams?.final === "true";
   
+  // 检查是否来自完成状态（从manage页面完成后跳转）
+  const isFromCompletion = searchParams?.source === "completion";
+  
   // 获取庆祝数据
   const celebrationData = await getCelebrationData(params.id);
   
@@ -150,6 +153,8 @@ export default async function CelebrationPage({
         celebrant={celebrationData.celebrant}
         initiator={celebrationData.initiator}
         wishes={celebrationData.wishes}
+        showBackButton={isFromCompletion}
+        isPreview={isPreview} // 传递预览模式标志
       />
     </div>
   );

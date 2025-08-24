@@ -57,27 +57,16 @@ export default function PreviewLayout({ children, celebrationId }: PreviewLayout
                     ? `${window.location.origin}/contribute/${celebrationId}`
                     : `/contribute/${celebrationId}`;
                     
-                  router.push(contributeLink);
+                  // 复制链接到剪贴板而不是跳转
+                  navigator.clipboard.writeText(contributeLink);
+                  alert("Invitation link copied to clipboard. Share it to collect more wishes!");
                 }}
                 variant="default"
               >
                 Invite More People
               </Button>
               
-              <Button 
-                onClick={() => {
-                  // 生成最终链接
-                  const finalLink = typeof window !== "undefined" 
-                    ? `${window.location.origin}/celebration/${celebrationId}`
-                    : `/celebration/${celebrationId}`;
-                    
-                  navigator.clipboard.writeText(finalLink);
-                  alert("Final link copied to clipboard");
-                }}
-                variant="default"
-              >
-                Share with Recipient
-              </Button>
+              {/* 移除了"Share with Recipient"按钮 */}
             </div>
             
             {/* 次要操作按钮组 */}

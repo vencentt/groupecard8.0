@@ -201,19 +201,22 @@ export default function MyActivities() {
               </CardHeader>
               <CardFooter className="flex flex-col gap-2">
                 <div className="grid grid-cols-1 gap-4 w-full">
-                  <div className="flex flex-col">
-                    <Link href={`/share/${activity.id}`} className="w-full">
-                      <Button 
-                        variant="outline" 
-                        className="w-full border-2 border-primary bg-white shadow-sm py-6 hover:bg-gray-50"
-                      >
-                        Share & Preview
-                      </Button>
-                    </Link>
-                    <p className="text-xs text-muted-foreground mt-1 text-center">
-                      Invite colleagues, share links and preview celebration
-                    </p>
-                  </div>
+                  {/* 只在非完成状态显示"Share & Preview"按钮 */}
+                  {activity.status !== "completed" && (
+                    <div className="flex flex-col">
+                      <Link href={`/share/${activity.id}`} className="w-full">
+                        <Button 
+                          variant="outline" 
+                          className="w-full border-2 border-primary bg-white shadow-sm py-6 hover:bg-gray-50"
+                        >
+                          Share & Preview
+                        </Button>
+                      </Link>
+                      <p className="text-xs text-muted-foreground mt-1 text-center">
+                        Invite colleagues, share links and preview celebration
+                      </p>
+                    </div>
+                  )}
                 
                   <div className="flex flex-col">
                     <Link 

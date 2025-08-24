@@ -174,10 +174,12 @@ export default function ManagePage({ params }: { params: { id: string } }) {
         
         // 更新当前卡片状态和步骤
         setCardData({ ...cardData, status: "completed" });
-        setCurrentStep(3);
         
         // 关闭确认对话框
         setCompleteDialogOpen(false);
+        
+        // 直接跳转到庆祝页面，并传递source=completion参数
+        router.push(`/celebration/${params.id}?source=completion`);
       } catch (error) {
         console.error('Failed to complete collection:', error);
         toast({
