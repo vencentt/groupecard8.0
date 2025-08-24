@@ -161,6 +161,14 @@ export function MyActivitiesSection() {
         <CardTitle>My Activities</CardTitle>
         <CardDescription>View your previously created celebrations</CardDescription>
       </CardHeader>
+      
+      {/* 添加删除确认对话框 */}
+      <DeleteConfirmDialog
+        open={deleteDialogOpen}
+        onOpenChange={setDeleteDialogOpen}
+        onConfirm={handleDeleteCard}
+        isDeleting={isDeleting}
+      />
       <CardContent>
         {isLoading ? (
           <div className="flex justify-center py-8">
@@ -254,9 +262,9 @@ function DeleteConfirmDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>确认删除</DialogTitle>
+          <DialogTitle>Confirm Deletion</DialogTitle>
           <DialogDescription>
-            您确定要删除这个卡片吗？此操作不可撤销。
+            Are you sure you want to delete this card? This action cannot be undone.
           </DialogDescription>
         </DialogHeader>
         
@@ -266,21 +274,21 @@ function DeleteConfirmDialog({
               <AlertTriangle className="h-4 w-4 text-amber-500" />
             </div>
             <p>
-              <strong>警告：</strong>删除后，所有相关的祝福和数据将永久丢失。
+              <strong>Warning:</strong> All related wishes and data will be permanently lost.
             </p>
           </div>
         </div>
         
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            取消
+            Cancel
           </Button>
           <Button 
             variant="destructive" 
             onClick={onConfirm}
             disabled={isDeleting !== null}
           >
-            {isDeleting ? "删除中..." : "确认删除"}
+            {isDeleting ? "Deleting..." : "Delete"}
           </Button>
         </DialogFooter>
       </DialogContent>
