@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Trash2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 // 定义活动类型
 interface Activity {
@@ -16,6 +19,9 @@ interface Activity {
 export function MyActivitiesSection() {
   const [activities, setActivities] = useState<Activity[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDeleting, setIsDeleting] = useState<string | null>(null);
+  const { toast } = useToast();
+  const router = useRouter();
 
   useEffect(() => {
     // 从API和localStorage加载活动
@@ -70,6 +76,47 @@ export function MyActivitiesSection() {
 
     loadActivities();
   }, []);
+
+  // 删除卡片的函数
+  const handleDeleteCard = async (id: string) => {
+    if (confirm("确定要删除这个卡片吗？此操作不可撤销。")) {
+      try {
+        setIsDeleting(id);
+        const response = await fetch(`/api/cards/${id}/delete`, {
+          method: "DELETE",
+        });
+
+        if (!response.ok) {
+          throw new Error("删除卡片失败");
+        }
+
+        // 从本地存储中移除该卡片ID
+        const savedCardIds = JSON.parse(localStorage.getItem('userCreatedCards') || '[]');
+        const updatedCardIds = savedCardIds.filter((cardId: string) => cardId !== id);
+        localStorage.setItem('userCreatedCards', JSON.stringify(updatedCardIds));
+
+        // 更新状态，移除已删除的卡片
+        setActivities(activities.filter(activity => activity.id !== id));
+        
+        toast({
+          title: "删除成功",
+          description: "卡片已成功删除",
+        });
+        
+        // 刷新页面数据
+        router.refresh();
+      } catch (error) {
+        console.error("删除卡片失败:", error);
+        toast({
+          title: "删除失败",
+          description: "无法删除卡片，请稍后再试",
+          variant: "destructive",
+        });
+      } finally {
+        setIsDeleting(null);
+      }
+    }
+  };
 
   // 格式化日期显示
   const formatDate = (dateString: string) => {
@@ -129,6 +176,22 @@ export function MyActivitiesSection() {
                       {activity.status === "collecting" ? "Manage" : "View"}
                     </Button>
                   </Link>
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleDeleteCard(activity.id);
+                    }}
+                    disabled={isDeleting === activity.id}
+                  >
+                    {isDeleting === activity.id ? (
+                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-red-500 border-t-transparent" />
+                    ) : (
+                      <Trash2 className="h-4 w-4" />
+                    )}
+                  </Button>
                 </div>
               </div>
             ))}

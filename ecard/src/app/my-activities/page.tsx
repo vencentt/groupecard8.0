@@ -5,7 +5,17 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Trash2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 // 定义活动类型
 interface Activity {
@@ -18,6 +28,11 @@ interface Activity {
 export default function MyActivities() {
   const [activities, setActivities] = useState<Activity[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDeleting, setIsDeleting] = useState<string | null>(null);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [cardToDelete, setCardToDelete] = useState<string | null>(null);
+  const { toast } = useToast();
+  const router = useRouter();
 
   useEffect(() => {
     // 从API和localStorage加载活动
@@ -61,6 +76,56 @@ export default function MyActivities() {
     loadActivities();
   }, []);
 
+  // 打开删除确认对话框
+  const openDeleteDialog = (id: string) => {
+    setCardToDelete(id);
+    setDeleteDialogOpen(true);
+  };
+
+  // 删除卡片的函数
+  const handleDeleteCard = async () => {
+    if (!cardToDelete) return;
+    
+    try {
+      setIsDeleting(cardToDelete);
+      const response = await fetch(`/api/cards/${cardToDelete}/delete`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete card");
+      }
+
+      // 从本地存储中移除该卡片ID
+      const savedCardIds = JSON.parse(localStorage.getItem('userCreatedCards') || '[]');
+      const updatedCardIds = savedCardIds.filter((cardId: string) => cardId !== cardToDelete);
+      localStorage.setItem('userCreatedCards', JSON.stringify(updatedCardIds));
+
+      // 更新状态，移除已删除的卡片
+      setActivities(activities.filter(activity => activity.id !== cardToDelete));
+      
+      toast({
+        title: "Success",
+        description: "Card has been deleted successfully",
+      });
+      
+      // 关闭对话框
+      setDeleteDialogOpen(false);
+      
+      // 刷新页面数据
+      router.refresh();
+    } catch (error) {
+      console.error("Failed to delete card:", error);
+      toast({
+        title: "Error",
+        description: "Could not delete card. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsDeleting(null);
+    }
+  };
+
   // 格式化日期显示
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -102,13 +167,35 @@ export default function MyActivities() {
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <CardTitle className="text-xl">{activity.employeeName}</CardTitle>
-                  <span
-                    className={`px-2 py-1 text-xs rounded-full border ${getStatusBadgeClass(
-                      activity.status
-                    )}`}
-                  >
-                    {activity.status === "collecting" ? "Collecting" : "Completed"}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`px-2 py-1 text-xs rounded-full border ${getStatusBadgeClass(
+                        activity.status
+                      )}`}
+                    >
+                      {activity.status === "collecting" ? "Collecting" : "Completed"}
+                    </span>
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 h-auto"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openDeleteDialog(activity.id);
+                      }}
+                      onTouchEnd={(e) => {
+                        e.preventDefault();
+                        openDeleteDialog(activity.id);
+                      }}
+                      disabled={isDeleting === activity.id}
+                    >
+                      {isDeleting === activity.id ? (
+                        <div className="h-4 w-4 animate-spin rounded-full border-2 border-red-500 border-t-transparent" />
+                      ) : (
+                        <Trash2 className="h-4 w-4" />
+                      )}
+                    </Button>
+                  </div>
                 </div>
                 <CardDescription>Created on {formatDate(activity.createdAt)}</CardDescription>
               </CardHeader>
@@ -161,6 +248,36 @@ export default function MyActivities() {
           </CardContent>
         </Card>
       )}
+
+      {/* 删除确认对话框 */}
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Card</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to delete this card? This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setDeleteDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={handleDeleteCard}
+              disabled={isDeleting !== null}
+            >
+              {isDeleting ? (
+                <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent mr-2" />
+              ) : null}
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </main>
   );
 }
