@@ -4,9 +4,17 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trash2 } from "lucide-react";
+import { Trash2, AlertTriangle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 // 定义活动类型
 interface Activity {
@@ -77,44 +85,56 @@ export function MyActivitiesSection() {
     loadActivities();
   }, []);
 
+  // 删除确认对话框状态
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [cardToDelete, setCardToDelete] = useState<string | null>(null);
+
+  // 打开删除确认对话框
+  const openDeleteDialog = (id: string) => {
+    setCardToDelete(id);
+    setDeleteDialogOpen(true);
+  };
+
   // 删除卡片的函数
-  const handleDeleteCard = async (id: string) => {
-    if (confirm("确定要删除这个卡片吗？此操作不可撤销。")) {
-      try {
-        setIsDeleting(id);
-        const response = await fetch(`/api/cards/${id}/delete`, {
-          method: "DELETE",
-        });
+  const handleDeleteCard = async () => {
+    if (!cardToDelete) return;
+    
+    try {
+      setIsDeleting(cardToDelete);
+      const response = await fetch(`/api/cards/${cardToDelete}/delete`, {
+        method: "DELETE",
+      });
 
-        if (!response.ok) {
-          throw new Error("删除卡片失败");
-        }
-
-        // 从本地存储中移除该卡片ID
-        const savedCardIds = JSON.parse(localStorage.getItem('userCreatedCards') || '[]');
-        const updatedCardIds = savedCardIds.filter((cardId: string) => cardId !== id);
-        localStorage.setItem('userCreatedCards', JSON.stringify(updatedCardIds));
-
-        // 更新状态，移除已删除的卡片
-        setActivities(activities.filter(activity => activity.id !== id));
-        
-        toast({
-          title: "删除成功",
-          description: "卡片已成功删除",
-        });
-        
-        // 刷新页面数据
-        router.refresh();
-      } catch (error) {
-        console.error("删除卡片失败:", error);
-        toast({
-          title: "删除失败",
-          description: "无法删除卡片，请稍后再试",
-          variant: "destructive",
-        });
-      } finally {
-        setIsDeleting(null);
+      if (!response.ok) {
+        throw new Error("删除卡片失败");
       }
+
+      // 从本地存储中移除该卡片ID
+      const savedCardIds = JSON.parse(localStorage.getItem('userCreatedCards') || '[]');
+      const updatedCardIds = savedCardIds.filter((cardId: string) => cardId !== cardToDelete);
+      localStorage.setItem('userCreatedCards', JSON.stringify(updatedCardIds));
+
+      // 更新状态，移除已删除的卡片
+      setActivities(activities.filter(activity => activity.id !== cardToDelete));
+      
+      toast({
+        title: "删除成功",
+        description: "卡片已成功删除",
+      });
+      
+      // 刷新页面数据
+      router.refresh();
+    } catch (error) {
+      console.error("删除卡片失败:", error);
+      toast({
+        title: "删除失败",
+        description: "无法删除卡片，请稍后再试",
+        variant: "destructive",
+      });
+    } finally {
+      setIsDeleting(null);
+      setDeleteDialogOpen(false);
+      setCardToDelete(null);
     }
   };
 
@@ -182,9 +202,13 @@ export function MyActivitiesSection() {
                     className="text-red-500 hover:text-red-700 hover:bg-red-50"
                     onClick={(e) => {
                       e.preventDefault();
-                      handleDeleteCard(activity.id);
+                      openDeleteDialog(activity.id);
                     }}
                     disabled={isDeleting === activity.id}
+                    onTouchEnd={(e) => {
+                      e.preventDefault();
+                      openDeleteDialog(activity.id);
+                    }}
                   >
                     {isDeleting === activity.id ? (
                       <div className="h-4 w-4 animate-spin rounded-full border-2 border-red-500 border-t-transparent" />
@@ -211,5 +235,55 @@ export function MyActivitiesSection() {
         )}
       </CardContent>
     </Card>
+  );
+}
+
+// 删除确认对话框组件
+function DeleteConfirmDialog({ 
+  open, 
+  onOpenChange, 
+  onConfirm, 
+  isDeleting 
+}: { 
+  open: boolean; 
+  onOpenChange: (open: boolean) => void; 
+  onConfirm: () => void; 
+  isDeleting: string | null;
+}) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>确认删除</DialogTitle>
+          <DialogDescription>
+            您确定要删除这个卡片吗？此操作不可撤销。
+          </DialogDescription>
+        </DialogHeader>
+        
+        <div className="py-4">
+          <div className="flex items-start space-x-2 text-sm">
+            <div className="flex-shrink-0 mt-0.5">
+              <AlertTriangle className="h-4 w-4 text-amber-500" />
+            </div>
+            <p>
+              <strong>警告：</strong>删除后，所有相关的祝福和数据将永久丢失。
+            </p>
+          </div>
+        </div>
+        
+        <DialogFooter>
+          <Button variant="outline" onClick={() => onOpenChange(false)}>
+            取消
+          </Button>
+          <Button 
+            variant="destructive" 
+            onClick={onConfirm}
+            disabled={isDeleting !== null}
+          >
+            {isDeleting ? "删除中..." : "确认删除"}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }

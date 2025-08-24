@@ -6,10 +6,18 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ParticipantsList } from "@/components/manage/participants-list";
-import { CopyIcon, Share2Icon, MailIcon, EyeIcon, CheckCircleIcon, PencilIcon, SaveIcon } from "lucide-react";
+import { CopyIcon, Share2Icon, MailIcon, EyeIcon, CheckCircleIcon, PencilIcon, SaveIcon, InfoIcon } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { DatePicker } from "@/components/ui/date-picker";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface Wish {
   id: string;
@@ -44,6 +52,9 @@ export default function ManagePage({ params }: { params: { id: string } }) {
   const [editEmployeeName, setEditEmployeeName] = useState("");
   const [editAnniversaryDate, setEditAnniversaryDate] = useState<Date | undefined>(undefined);
   const [editAnniversaryYear, setEditAnniversaryYear] = useState("");
+  
+  // 确认对话框状态
+  const [completeDialogOpen, setCompleteDialogOpen] = useState(false);
 
   useEffect(() => {
     // 从API获取数据
@@ -152,23 +163,26 @@ export default function ManagePage({ params }: { params: { id: string } }) {
         });
         
         if (!response.ok) {
-          throw new Error('更新贺卡状态失败');
+          throw new Error('Failed to update card status');
         }
         
         // 显示成功消息
         toast({
-          title: "祝福收集已完成",
-          description: "您现在可以分享最终的祝福链接",
+          title: "Collection completed",
+          description: "You can now share the final celebration link",
         });
         
         // 更新当前卡片状态和步骤
         setCardData({ ...cardData, status: "completed" });
         setCurrentStep(3);
+        
+        // 关闭确认对话框
+        setCompleteDialogOpen(false);
       } catch (error) {
-        console.error('完成收集失败:', error);
+        console.error('Failed to complete collection:', error);
         toast({
-          title: "操作失败",
-          description: "无法完成收集，请稍后再试",
+          title: "Operation failed",
+          description: "Unable to complete collection, please try again later",
           variant: "destructive",
         });
       }
@@ -561,10 +575,10 @@ export default function ManagePage({ params }: { params: { id: string } }) {
       {currentStep === 1 && (
         <Card className="mb-6 border-primary/50">
           <CardHeader>
-          <CardTitle as="h2" className="flex items-center">
-            <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 inline-flex items-center justify-center text-sm mr-2">1</span>
-            Manage Work Anniversary Collection Link
-          </CardTitle>
+              <CardTitle className="flex items-center">
+                <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 inline-flex items-center justify-center text-sm mr-2">2</span>
+                Manage Work Anniversary Wishes
+              </CardTitle>
             <CardDescription>
               Share this link with colleagues to collect wishes for {cardData.employeeName}
             </CardDescription>
@@ -649,7 +663,7 @@ export default function ManagePage({ params }: { params: { id: string } }) {
         <div className="space-y-6">
           <Card className="border-primary/50">
             <CardHeader>
-              <CardTitle as="h2" className="flex items-center">
+              <CardTitle className="flex items-center">
                 <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 inline-flex items-center justify-center text-sm mr-2">2</span>
                 Manage Work Anniversary Wishes
               </CardTitle>
@@ -660,7 +674,13 @@ export default function ManagePage({ params }: { params: { id: string } }) {
             <CardContent>
               {/* 内联分享区域 - 替代"Back to Share Collection Link"按钮 */}
               <div className="mb-6 p-4 border rounded-md bg-slate-50">
-                <h3 className="text-sm font-medium mb-2">Collection Link</h3>
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className="text-sm font-medium">Collection Link</h3>
+                  <span className="text-xs text-blue-600 flex items-center">
+                    <Share2Icon className="h-3 w-3 mr-1" />
+                    Share anytime
+                  </span>
+                </div>
                 <div className="flex items-center space-x-2">
                   <div className="relative flex-1">
                     <input
@@ -687,6 +707,9 @@ export default function ManagePage({ params }: { params: { id: string } }) {
                     Copy
                   </Button>
                 </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  You can share this link to collect wishes before or after finalizing the celebration.
+                </p>
               </div>
               
               <ParticipantsList 
@@ -695,12 +718,18 @@ export default function ManagePage({ params }: { params: { id: string } }) {
               />
               
               <div className="flex flex-col space-y-2 mt-6">
-                <Button 
-                  className="w-full" 
-                  onClick={completeCollection}
-                >
-                  Complete Collection & Generate Final Page
-                </Button>
+                <div className="space-y-4">
+                  <div className="flex items-center text-sm text-muted-foreground mb-2">
+                    <InfoIcon className="h-4 w-4 mr-2" />
+                    <span>You can share the collection link anytime to gather more wishes</span>
+                  </div>
+                  <Button 
+                    className="w-full" 
+                    onClick={() => setCompleteDialogOpen(true)}
+                  >
+                    Finalize & Lock Celebration
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -712,7 +741,7 @@ export default function ManagePage({ params }: { params: { id: string } }) {
         <div className="space-y-6">
           <Card className="border-primary/50">
             <CardHeader>
-              <CardTitle as="h2" className="flex items-center">
+              <CardTitle className="flex items-center">
                 <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 inline-flex items-center justify-center text-sm mr-2">3</span>
                 Manage Work Anniversary Celebration Page
               </CardTitle>
@@ -810,6 +839,47 @@ export default function ManagePage({ params }: { params: { id: string } }) {
           </Card>
         </div>
       )}
+      
+      {/* 完成收集确认对话框 */}
+      <Dialog open={completeDialogOpen} onOpenChange={setCompleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm Finalization</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to finalize this celebration?
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="py-4 space-y-4">
+            <div className="flex items-start space-x-2 text-sm">
+              <div className="flex-shrink-0 mt-0.5">
+                <InfoIcon className="h-4 w-4 text-amber-500" />
+              </div>
+              <p>
+                <strong>Important:</strong> Once finalized, you will no longer be able to edit or add wishes to this celebration.
+              </p>
+            </div>
+            
+            <div className="flex items-start space-x-2 text-sm">
+              <div className="flex-shrink-0 mt-0.5">
+                <InfoIcon className="h-4 w-4 text-blue-500" />
+              </div>
+              <p>
+                <strong>Note:</strong> Before finalizing, you can continue to share the link to collect wishes.
+              </p>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setCompleteDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button variant="default" onClick={completeCollection}>
+              Finalize Celebration
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

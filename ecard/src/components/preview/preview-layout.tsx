@@ -1,9 +1,17 @@
 "use client";
 
-import { EyeIcon } from "lucide-react";
-import { ReactNode } from "react";
+import { EyeIcon, InfoIcon } from "lucide-react";
+import { ReactNode, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface PreviewLayoutProps {
   children: ReactNode;
@@ -16,6 +24,7 @@ interface PreviewLayoutProps {
  */
 export default function PreviewLayout({ children, celebrationId }: PreviewLayoutProps) {
   const router = useRouter();
+  const [completeDialogOpen, setCompleteDialogOpen] = useState(false);
   
   return (
     <div className="flex flex-col min-h-screen">
@@ -81,18 +90,63 @@ export default function PreviewLayout({ children, celebrationId }: PreviewLayout
               </Button>
               
               <Button 
-                onClick={() => {
-                  // 生成最终链接并跳转
-                  router.push(`/celebration/${celebrationId}?final=true`);
-                }}
+                onClick={() => setCompleteDialogOpen(true)}
                 variant="outline"
               >
-                Generate Final Link
+                Finalize & Lock Celebration
               </Button>
             </div>
           </div>
         </div>
       </div>
+      
+      {/* 完成收集确认对话框 */}
+      <Dialog open={completeDialogOpen} onOpenChange={setCompleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm Finalization</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to finalize this celebration?
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="py-4 space-y-4">
+            <div className="flex items-start space-x-2 text-sm">
+              <div className="flex-shrink-0 mt-0.5">
+                <InfoIcon className="h-4 w-4 text-amber-500" />
+              </div>
+              <p>
+                <strong>Important:</strong> Once finalized, you will no longer be able to edit or add wishes to this celebration.
+              </p>
+            </div>
+            
+            <div className="flex items-start space-x-2 text-sm">
+              <div className="flex-shrink-0 mt-0.5">
+                <InfoIcon className="h-4 w-4 text-blue-500" />
+              </div>
+              <p>
+                <strong>Note:</strong> Before finalizing, you can continue to share the link to collect wishes.
+              </p>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setCompleteDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button 
+              variant="default" 
+              onClick={() => {
+                setCompleteDialogOpen(false);
+                // 生成最终链接并跳转
+                router.push(`/celebration/${celebrationId}?final=true`);
+              }}
+            >
+              Finalize Celebration
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

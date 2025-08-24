@@ -6,7 +6,15 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
-import { CopyIcon, EyeIcon } from "lucide-react";
+import { CopyIcon, EyeIcon, InfoIcon } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import CardPreview from "@/components/share/card-preview";
 
 interface SharePageProps {
@@ -28,6 +36,7 @@ export default function SharePage({ params }: SharePageProps) {
   const [activeTab, setActiveTab] = useState("link");
   const [savedCard, setSavedCard] = useState<SavedCard | null>(null);
   const [wishes, setWishes] = useState<number>(0); // 模拟已收集的祝福数量
+  const [completeDialogOpen, setCompleteDialogOpen] = useState(false);
 
   // 生成链接
   const contributeLink = typeof window !== "undefined" 
@@ -215,12 +224,53 @@ export default function SharePage({ params }: SharePageProps) {
           <Button 
             variant="default" 
             className="w-full" 
-            onClick={completeCollection}
+            onClick={() => setCompleteDialogOpen(true)}
           >
-            Complete Collection & Generate Final Page
+            Finalize & Lock Celebration
           </Button>
         )}
       </div>
+
+      {/* 完成收集确认对话框 */}
+      <Dialog open={completeDialogOpen} onOpenChange={setCompleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm Finalization</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to finalize this celebration?
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="py-4 space-y-4">
+            <div className="flex items-start space-x-2 text-sm">
+              <div className="flex-shrink-0 mt-0.5">
+                <InfoIcon className="h-4 w-4 text-amber-500" />
+              </div>
+              <p>
+                <strong>Important:</strong> Once finalized, you will no longer be able to edit or add wishes to this celebration.
+              </p>
+            </div>
+            
+            <div className="flex items-start space-x-2 text-sm">
+              <div className="flex-shrink-0 mt-0.5">
+                <InfoIcon className="h-4 w-4 text-blue-500" />
+              </div>
+              <p>
+                <strong>Note:</strong> Before finalizing, you can continue to share the link to collect wishes.
+              </p>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setCompleteDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button variant="default" onClick={completeCollection}>
+              Finalize Celebration
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
