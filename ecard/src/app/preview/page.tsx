@@ -5,10 +5,32 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Mail, Star } from "lucide-react";
 import { CardHeader as CelebrationCardHeader } from "@/components/celebration/card-header";
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Preview Work Anniversary Card | Happy Work Anniversary",
-  description: "Preview our beautiful work anniversary cards before creating your own celebration. See how our digital cards look with personalized messages.",
+  title: "Happy Work Wishes & Anniversary Card Preview | Happy Work Anniversary",
+  description: "Preview our beautiful work anniversary cards with happy work wishes before creating your own celebration. Personalize messages for colleagues' work milestones.",
+  keywords: ["happy work wishes", "work anniversary card", "anniversary wishes", "colleague celebration", "work milestone"],
+  openGraph: {
+    title: "Happy Work Wishes & Anniversary Card Preview | Happy Work Anniversary",
+    description: "Preview our beautiful work anniversary cards with happy work wishes before creating your own celebration.",
+    type: "website",
+    url: "https://www.happyworkanniversary.net/preview",
+    images: [
+      {
+        url: "https://www.happyworkanniversary.net/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Work Anniversary Card Preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Happy Work Wishes & Anniversary Card Preview",
+    description: "Preview our beautiful work anniversary cards with happy work wishes before creating your own celebration.",
+    images: ["https://www.happyworkanniversary.net/og-image.jpg"],
+  },
 };
 
 // 示例祝福数据
@@ -16,34 +38,53 @@ const exampleWishes = [
   {
     id: "1",
     name: "Sarah Johnson",
-    message: "Congratulations on your 5th work anniversary! Your dedication and hard work have been an inspiration to all of us. Thank you for your valuable contributions to our team.",
+    message: "Happy work wishes on your 5th work anniversary! Your dedication and hard work have been an inspiration to all of us. Thank you for your valuable contributions to our team.",
     isInitiator: true,
     createdAt: new Date().toISOString(),
   },
   {
     id: "2",
     name: "Michael Chen",
-    message: "Five years of excellence! It's been a pleasure working with you. Your positive attitude and problem-solving skills have made a significant impact on our projects.",
+    message: "Five years of excellence! Sending my warmest happy work wishes to an amazing colleague. Your positive attitude and problem-solving skills have made a significant impact on our projects.",
     isInitiator: false,
     createdAt: new Date().toISOString(),
   },
   {
     id: "3",
     name: "Emily Rodriguez",
-    message: "Happy work anniversary! Your creativity and commitment have been instrumental to our success. Looking forward to many more years of collaboration!",
+    message: "Happy work anniversary wishes! Your creativity and commitment have been instrumental to our success. Looking forward to celebrating many more professional milestones with you!",
     isInitiator: false,
     createdAt: new Date().toISOString(),
   },
   {
     id: "4",
     name: "David Thompson",
-    message: "Congratulations on this milestone! Your leadership and expertise have helped us overcome numerous challenges. Thank you for being such a valuable team member.",
+    message: "Sending heartfelt happy work wishes on this special milestone! Your leadership and expertise have helped us overcome numerous challenges. Thank you for being such a valuable team member.",
     isInitiator: false,
     createdAt: new Date().toISOString(),
   },
 ];
 
 export default function PreviewPage() {
+  // 添加结构化数据
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Happy Work Wishes & Anniversary Card Preview | Happy Work Anniversary",
+    "description": "Preview our beautiful work anniversary cards with happy work wishes before creating your own celebration.",
+    "datePublished": new Date().toISOString(),
+    "keywords": ["happy work wishes", "work anniversary card", "anniversary wishes", "colleague celebration"],
+    "image": "https://www.happyworkanniversary.net/og-image.jpg",
+    "url": "https://www.happyworkanniversary.net/preview",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Happy Work Anniversary",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.happyworkanniversary.net/logo.png"
+      }
+    }
+  };
   // 格式化日期
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -74,7 +115,11 @@ export default function PreviewPage() {
   const years = 5;
 
   return (
-    <main className="min-h-screen">
+    <>
+      <Script id="schema-structured-data" type="application/ld+json">
+        {JSON.stringify(jsonLd)}
+      </Script>
+      <main className="min-h-screen">
       {/* 预览模式标识条 */}
       <div className="bg-yellow-50 border border-yellow-200 p-3 flex items-center justify-center mb-8">
         <p className="text-yellow-800 font-medium">
@@ -88,7 +133,7 @@ export default function PreviewPage() {
       <div className="container max-w-4xl py-4 mx-auto">
         <div className="space-y-8">
           {/* 贺卡头部 */}
-          <h1 className="sr-only">Alex Morgan's 5 Year Work Anniversary Celebration</h1>
+          <h1 className="sr-only">Alex Morgan's 5 Year Work Anniversary Celebration - Happy Work Wishes</h1>
           <CelebrationCardHeader 
             title={`Happy ${years}${getOrdinalSuffix(years)} Work Anniversary!`}
             description={`Celebrating Alex Morgan from Marketing Team on ${formatDate(new Date().toISOString())}`}
@@ -96,7 +141,7 @@ export default function PreviewPage() {
           
           {/* 祝福墙 */}
           <div>
-            <h2 className="text-2xl font-bold mb-4 text-center">Wishes From Your Colleagues</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center">Happy Work Wishes From Colleagues</h2>
             <div className="space-y-4">
               {exampleWishes.map((wish) => (
                 <Card key={wish.id} className={wish.isInitiator ? "border-primary" : ""}>
@@ -146,5 +191,6 @@ export default function PreviewPage() {
         </div>
       </div>
     </main>
+    </>
   );
 }
