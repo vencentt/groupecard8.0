@@ -27,13 +27,10 @@ export default function AboutPage() {
           <div className="md:w-1/2">
             <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
             <p className="mb-4">
-              At Happy Work Anniversary, we believe that recognizing professional milestones with thoughtful work anniversary messages is essential for building strong, engaged teams and fostering a positive workplace culture.
-            </p>
-            <p className="mb-4">
-              Our mission is to make work anniversary celebrations meaningful, collaborative, and effortless. We provide a platform that enables teams to create personalized work anniversary messages and celebrations that truly honor the contributions and growth of their colleagues.
+              At Happy Work Anniversary, we believe that recognizing professional milestones is essential for building strong, engaged teams and fostering a positive workplace culture.
             </p>
             <p>
-              Through thoughtful work anniversary messages and collaborative celebrations, we help organizations show authentic appreciation for their team members' dedication and loyalty, strengthening workplace relationships and boosting morale.
+              We provide a simple platform that enables teams to create personalized celebrations that truly honor the contributions and growth of their colleagues, strengthening workplace relationships and boosting morale.
             </p>
           </div>
           <div className="md:w-1/2">
@@ -49,24 +46,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Story Section */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-6 text-center">Our Story</h2>
-        <div className="bg-muted p-6 rounded-lg">
-          <p className="mb-4">
-            Happy Work Anniversary was born from a simple observation: while work anniversaries are significant milestones in people's professional lives, they often go unnoticed or are celebrated with generic work anniversary messages that lack personal meaning.
-          </p>
-          <p className="mb-4">
-            Our founder experienced this firsthand when a colleague's 10-year work anniversary was acknowledged with just a brief email containing generic work anniversary wishes. Seeing the missed opportunity to celebrate such a significant milestone with meaningful work anniversary messages, the idea for a dedicated work anniversary celebration platform was born.
-          </p>
-          <p className="mb-4">
-            We launched in 2023 with a clear purpose: to transform work anniversary messages and celebrations from afterthoughts into meaningful experiences that strengthen workplace relationships and recognize professional journeys.
-          </p>
-          <p>
-            Today, Happy Work Anniversary helps teams across industries create collaborative celebrations with personalized work anniversary messages that truly honor their colleagues' contributions and milestones, fostering stronger workplace connections and boosting employee engagement.
-          </p>
-        </div>
-      </section>
 
       {/* Values Section */}
       <section className="mb-16">
@@ -127,122 +106,43 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Benefits Section - Inspired by Tencent */}
       <section className="mb-16">
         <h2 className="text-2xl font-bold mb-6 text-center">Why Celebrate Work Anniversaries</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-muted p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-3">For Employees</h3>
-            <ul className="space-y-2">
-              <li className="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600 mr-2 mt-1 flex-shrink-0">
-                  <path d="M20 6 9 17l-5-5"></path>
-                </svg>
-                <span>Increased sense of belonging and value</span>
-              </li>
-              <li className="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600 mr-2 mt-1 flex-shrink-0">
-                  <path d="M20 6 9 17l-5-5"></path>
-                </svg>
-                <span>Recognition of professional growth and achievements</span>
-              </li>
-              <li className="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600 mr-2 mt-1 flex-shrink-0">
-                  <path d="M20 6 9 17l-5-5"></path>
-                </svg>
-                <span>Motivation to continue contributing and growing</span>
-              </li>
-              <li className="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600 mr-2 mt-1 flex-shrink-0">
-                  <path d="M20 6 9 17l-5-5"></path>
-                </svg>
-                <span>Meaningful feedback from colleagues and leadership</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-muted p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-3">For Organizations</h3>
-            <ul className="space-y-2">
-              <li className="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600 mr-2 mt-1 flex-shrink-0">
-                  <path d="M20 6 9 17l-5-5"></path>
-                </svg>
-                <span>Improved employee retention and loyalty</span>
-              </li>
-              <li className="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600 mr-2 mt-1 flex-shrink-0">
-                  <path d="M20 6 9 17l-5-5"></path>
-                </svg>
-                <span>Strengthened team bonds and workplace culture</span>
-              </li>
-              <li className="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600 mr-2 mt-1 flex-shrink-0">
-                  <path d="M20 6 9 17l-5-5"></path>
-                </svg>
-                <span>Enhanced employee engagement and satisfaction</span>
-              </li>
-              <li className="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600 mr-2 mt-1 flex-shrink-0">
-                  <path d="M20 6 9 17l-5-5"></path>
-                </svg>
-                <span>Demonstration of company values in action</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Work Anniversary Messages Section - NEW */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-6 text-center">Crafting Meaningful Work Anniversary Messages</h2>
-        <div className="bg-muted p-6 rounded-lg">
+        <div className="bg-muted p-6 rounded-lg mb-6">
           <p className="mb-4">
-            Creating impactful work anniversary messages is an art that combines personal recognition with professional appreciation. At Happy Work Anniversary, we believe the most effective work anniversary messages share these key qualities:
+            Leading companies like Tencent recognize the importance of celebrating work milestones. As highlighted on their <a href="https://careers.tencent.com/en-us/welfare.html" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">employee benefits page</a>:
           </p>
-          <ul className="space-y-3 mb-4">
-            <li className="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary mr-2 mt-1 flex-shrink-0">
-                <path d="M20 6 9 17l-5-5"></path>
-              </svg>
-              <span><strong>Personalization</strong>: The best work anniversary messages reference specific contributions, qualities, or memories that make the recipient feel truly seen and valued.</span>
-            </li>
-            <li className="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary mr-2 mt-1 flex-shrink-0">
-                <path d="M20 6 9 17l-5-5"></path>
-              </svg>
-              <span><strong>Authenticity</strong>: Genuine work anniversary messages that come from the heart resonate more deeply than formulaic congratulations.</span>
-            </li>
-            <li className="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary mr-2 mt-1 flex-shrink-0">
-                <path d="M20 6 9 17l-5-5"></path>
-              </svg>
-              <span><strong>Recognition</strong>: Effective work anniversary messages acknowledge both professional achievements and personal growth over the years.</span>
-            </li>
-            <li className="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary mr-2 mt-1 flex-shrink-0">
-                <path d="M20 6 9 17l-5-5"></path>
-              </svg>
-              <span><strong>Forward-looking</strong>: The best work anniversary messages not only celebrate the past but also express excitement for the recipient's future contributions and growth.</span>
-            </li>
-          </ul>
+          <div className="bg-blue-600 text-white p-4 rounded-lg mb-4">
+            <p>
+              "Tencent prepares a special acknowledgement for your birthday, provides your baby a QQ number that includes their date of birth, and gives you a unique acknowledgement upon your anniversary with the company."
+            </p>
+          </div>
           <p>
-            Our platform makes it easy to collect and present meaningful work anniversary messages from entire teams, creating a collaborative celebration that shows the true impact of a colleague's presence and contributions.
+            Tencent's philosophy emphasizes: "Caring about employees' growth is one of Tencent's core management philosophies." Through our platform, even small teams can create meaningful work anniversary messages that enhance team cohesion and employee satisfaction.
           </p>
         </div>
       </section>
+
 
       {/* CTA Section */}
       <section className="text-center">
-        <h2 className="text-2xl font-bold mb-4">Ready to Create Meaningful Work Anniversary Messages?</h2>
+        <h2 className="text-2xl font-bold mb-4">Ready to Create a Meaningful Celebration?</h2>
         <p className="mb-6 text-muted-foreground max-w-2xl mx-auto">
-          Join thousands of teams using Happy Work Anniversary to craft personalized work anniversary messages and create celebrations that truly honor professional milestones.
+          Join thousands of teams using Happy Work Anniversary to create celebrations that truly honor professional milestones.
         </p>
-        <Link href="/create">
-          <Button size="lg" className="px-8">
-            Create Your First Celebration
-          </Button>
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link href="/create">
+            <Button size="lg" className="px-8">
+              Create Your First Celebration
+            </Button>
+          </Link>
+          <Link href="/">
+            <Button size="lg" variant="outline" className="px-8">
+              Back to Home
+            </Button>
+          </Link>
+        </div>
       </section>
     </div>
   );
