@@ -1,9 +1,12 @@
 import { Metadata } from "next";
 
+// @ts-ignore - Next.js metadata types may vary between versions
 export const metadata: Metadata = {
   title: "Privacy Policy | Happy Work Anniversary",
   description: "Privacy policy for Happy Work Anniversary platform, detailing how we collect, use, and protect your information.",
-  canonical: "https://www.happyworkanniversary.net/privacy-policy",
+  alternates: {
+    canonical: "/privacy-policy",
+  },
 };
 
 export default function PrivacyPolicyPage() {

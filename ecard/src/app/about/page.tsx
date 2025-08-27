@@ -7,8 +7,10 @@ import { Card, CardContent } from "@/components/ui/card";
 export const metadata: Metadata = {
   title: "About Happy Work Anniversary | Work Anniversary Messages & Celebrations",
   description: "Learn about Happy Work Anniversary platform, our mission to celebrate workplace milestones, and how we help teams create meaningful work anniversary messages and celebrations.",
-  canonical: "https://www.happyworkanniversary.net/about",
   keywords: "work anniversary messages, work anniversary, work anniversary celebrations, workplace milestones, employee recognition",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {

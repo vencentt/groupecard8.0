@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Create memorable happy work anniversary celebrations with personalized messages from the team. Recognize professional milestones with thoughtful digital cards.",
   keywords: "happy work anniversary, work anniversary cards, work anniversary celebrations, work anniversary wishes, professional milestones",
   alternates: {
-    canonical: "https://www.happyworkanniversary.net/",
+    canonical: "/",
   },
 };
 

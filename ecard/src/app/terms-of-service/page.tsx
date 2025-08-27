@@ -1,9 +1,12 @@
 import { Metadata } from "next";
 
+// @ts-ignore - Next.js metadata types may vary between versions
 export const metadata: Metadata = {
   title: "Terms of Service | Happy Work Anniversary",
   description: "Terms of service for Happy Work Anniversary platform, outlining the rules and guidelines for using our service.",
-  canonical: "https://www.happyworkanniversary.net/terms-of-service",
+  alternates: {
+    canonical: "/terms-of-service",
+  },
 };
 
 export default function TermsOfServicePage() {

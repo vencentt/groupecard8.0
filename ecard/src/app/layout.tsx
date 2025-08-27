@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Happy Work Anniversary - Celebrate Work Milestones",
   description: "Create memorable work anniversary celebrations with personalized messages from the team",
-  canonical: "https://www.happyworkanniversary.net/",
+  metadataBase: new URL('https://www.happyworkanniversary.net'),
 };
 
 export default function RootLayout({
@@ -23,9 +23,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <script src="https://analytics.ahrefs.com/analytics.js" data-key="dairbpZ4ypJjqaqq7qVVZQ" async></script>
-        {/* Canonical Link */}
-        <link rel="canonical" href="https://www.happyworkanniversary.net/" />
-        
         {/* Google Analytics */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-RXXY2CE4DV" />
         <Script id="google-analytics">
