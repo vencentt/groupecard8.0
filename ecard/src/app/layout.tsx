@@ -22,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <script src="https://analytics.ahrefs.com/analytics.js" data-key="dairbpZ4ypJjqaqq7qVVZQ" async></script>
         {/* Canonical Link */}
         <link rel="canonical" href="https://www.happyworkanniversary.net/" />
         
