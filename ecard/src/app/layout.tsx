@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Happy Work Anniversary - Celebrate Work Milestones",
   description: "Create memorable work anniversary celebrations with personalized messages from the team",
   metadataBase: new URL('https://www.happyworkanniversary.net'),
+  // 不要在这里设置canonical，让各个页面自己定义
 };
 
 export default function RootLayout({

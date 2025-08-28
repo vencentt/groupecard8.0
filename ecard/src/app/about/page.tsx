@@ -121,7 +121,7 @@ export default function AboutPage() {
             </p>
           </div>
           <p>
-            Tencent's philosophy emphasizes: "Caring about employees' growth is one of Tencent's core management philosophies." Through our platform, even small teams can create meaningful work anniversary messages that enhance team cohesion and employee satisfaction.
+            Tencent's philosophy emphasizes: "Caring about employees' growth is one of Tencent's core management philosophies." Through our platform, even small teams can create meaningful work anniversary messages that enhance team cohesion and employee satisfaction. Looking for a company that values employee recognition? <a href="https://careers.tencent.com/en-us/welfare.html" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Explore career opportunities at Tencent</a>.
           </p>
         </div>
       </section>
