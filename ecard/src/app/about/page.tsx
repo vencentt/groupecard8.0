@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "About Happy Work Anniversary | Work Anniversary Messages & Celebrations",
+  title: "Write Work Anniversary Messages | Happy Work Anniversary",
   description: "Learn about Happy Work Anniversary platform, our mission to celebrate workplace milestones, and how we help teams create meaningful work anniversary messages and celebrations.",
   keywords: "work anniversary messages, work anniversary, work anniversary celebrations, workplace milestones, employee recognition",
   alternates: {

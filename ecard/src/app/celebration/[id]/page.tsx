@@ -4,7 +4,7 @@ import CelebrationView from "@/components/celebration/celebration-view";
 import PreviewLayout from "@/components/preview/preview-layout";
 
 export const metadata: Metadata = {
-  title: "Work Anniversary Celebration | Happy work anniversary",
+  title: "View Work Anniversary Celebration | Happy Work Anniversary",
   description: "Celebrate work milestones with personalized anniversary cards and messages from colleagues. View all wishes for your professional anniversary.",
   keywords: "work anniversary celebration, work anniversary wishes, professional milestone"
 };

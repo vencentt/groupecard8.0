@@ -3,7 +3,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 // @ts-ignore - Next.js metadata types may vary between versions
 export const metadata: Metadata = {
-  title: "Happy Work Anniversary FAQs | Celebration Guide & Tips",
+  title: "Find Work Anniversary Ideas & Tips | Happy Work Anniversary",
   description: "Find answers to frequently asked questions about happy work anniversary celebrations, message ideas, and how to create memorable work anniversary experiences for colleagues.",
   keywords: "work anniversary, work anniversary messages, work anniversary wishes, work anniversary celebration",
   alternates: {

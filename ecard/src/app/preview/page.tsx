@@ -8,11 +8,11 @@ import { CardHeader as CelebrationCardHeader } from "@/components/celebration/ca
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Happy Work Wishes & Anniversary Card Preview | Happy Work Anniversary",
+  title: "Preview Work Anniversary Cards & Wishes | Happy Work Anniversary",
   description: "Preview our beautiful work anniversary cards with happy work wishes before creating your own celebration. Personalize messages for colleagues' work milestones.",
   keywords: ["happy work wishes", "work anniversary card", "anniversary wishes", "colleague celebration", "work milestone"],
   openGraph: {
-    title: "Happy Work Wishes & Anniversary Card Preview | Happy Work Anniversary",
+    title: "Preview Work Anniversary Cards & Wishes | Happy Work Anniversary",
     description: "Preview our beautiful work anniversary cards with happy work wishes before creating your own celebration.",
     type: "website",
     url: "https://www.happyworkanniversary.net/preview",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Happy Work Wishes & Anniversary Card Preview",
+    title: "Preview Work Anniversary Cards & Wishes",
     description: "Preview our beautiful work anniversary cards with happy work wishes before creating your own celebration.",
     images: ["https://www.happyworkanniversary.net/og-image.jpg"],
   },

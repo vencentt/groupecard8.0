@@ -47,9 +47,9 @@ export function CardHeader({ title = "Work Anniversary", description }: CardHead
       <div className="container px-4">
         <div className="grid grid-cols-12">
           <div className="col-span-12 md:col-span-8 md:col-start-3 text-center">
-            <h1 className="text-[35px] md:text-6xl font-bold leading-snug">
+            <h2 className="text-[35px] md:text-6xl font-bold leading-snug">
               {title}
-            </h1>
+            </h2>
             <p className="text-xl leading-normal opacity-75 mt-6">
               {description || "Celebrate this special milestone with your colleagues and friends. Share your wishes and memories together."}
             </p>
