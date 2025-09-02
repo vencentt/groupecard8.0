@@ -8,6 +8,15 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
+// 导出渐变颜色选项
+export const gradientColors = [
+  { name: "蓝色", gradient: "linear-gradient(to right, #0ba6f9, #33f3e4)" },
+  { name: "紫色", gradient: "linear-gradient(to right, #6a11cb, #2575fc)" },
+  { name: "绿色", gradient: "linear-gradient(to right, #11998e, #38ef7d)" },
+  { name: "橙色", gradient: "linear-gradient(to right, #f12711, #f5af19)" },
+  { name: "粉色", gradient: "linear-gradient(to right, #fc5c7d, #6a82fb)" },
+];
+
 // 社交媒体链接配置
 const links = [
   {
@@ -28,10 +37,19 @@ const links = [
 interface CardHeaderProps {
   title?: string;
   description?: string;
+  gradientColor?: string;
+  onColorChange?: (color: string) => void;
+  showColorPicker?: boolean;
 }
 
 // 贺卡头部组件
-export function CardHeader({ title = "Work Anniversary", description }: CardHeaderProps) {
+export function CardHeader({ 
+  title = "Work Anniversary", 
+  description,
+  gradientColor = "linear-gradient(to right, #0ba6f9, #33f3e4)",
+  onColorChange,
+  showColorPicker = false
+}: CardHeaderProps) {
   return (
     <section
       className="card-header bg-center bg-no-repeat bg-contain relative z-[1] bg-white dark:bg-[#0b1727] text-white overflow-hidden py-16 md:py-32 rounded-t-lg"
@@ -42,8 +60,23 @@ export function CardHeader({ title = "Work Anniversary", description }: CardHead
     >
       <div
         className="absolute top-0 left-0 right-0 bottom-0 opacity-90 -z-[1]"
-        style={{ background: "linear-gradient(to right, #0ba6f9, #33f3e4)" }}
+        style={{ background: gradientColor }}
       ></div>
+      
+      {/* 颜色选择器 */}
+      {showColorPicker && onColorChange && (
+        <div className="absolute top-4 right-4 flex gap-2">
+          {gradientColors.map((color, index) => (
+            <button
+              key={index}
+              className={`w-6 h-6 rounded-full border-2 ${gradientColor === color.gradient ? 'border-white' : 'border-transparent'}`}
+              style={{ background: color.gradient }}
+              onClick={() => onColorChange(color.gradient)}
+              aria-label={`选择${color.name}主题`}
+            />
+          ))}
+        </div>
+      )}
       <div className="container px-4">
         <div className="grid grid-cols-12">
           <div className="col-span-12 md:col-span-8 md:col-start-3 text-center">
