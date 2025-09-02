@@ -1,6 +1,5 @@
 "use client";
 
-import { Metadata } from "next";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import SuccessView from "@/components/create/success-view";

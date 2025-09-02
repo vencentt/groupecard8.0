@@ -3,11 +3,21 @@ import { notFound } from "next/navigation";
 import CelebrationView from "@/components/celebration/celebration-view";
 import PreviewLayout from "@/components/preview/preview-layout";
 
-export const metadata: Metadata = {
-  title: "View Work Anniversary Celebration | Happy Work Anniversary",
-  description: "Celebrate work milestones with personalized anniversary cards and messages from colleagues. View all wishes for your professional anniversary.",
-  keywords: "work anniversary celebration, work anniversary wishes, professional milestone"
-};
+// 动态生成元数据，包括canonical链接
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: { id: string } 
+}): Promise<Metadata> {
+  return {
+    title: "View Work Anniversary Celebration | Happy Work Anniversary",
+    description: "Celebrate work milestones with personalized anniversary cards and messages from colleagues. View all wishes for your professional anniversary.",
+    keywords: "work anniversary celebration, work anniversary wishes, professional milestone",
+    alternates: {
+      canonical: `https://www.happyworkanniversary.net/celebration/${params.id}`,
+    }
+  };
+}
 
 // 从API获取庆祝数据的函数
 async function getCelebrationData(id: string) {

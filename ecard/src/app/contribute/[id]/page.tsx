@@ -2,11 +2,20 @@ import { Metadata } from "next";
 import ContributeForm from "@/components/contribute/contribute-form";
 import { notFound } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Add Work Anniversary Wishes | Happy work anniversary",
-  description: "Share your personal message and wishes for a colleague's work anniversary celebration. Add your contribution to make their professional milestone special.",
-  keywords: "work anniversary wishes, work anniversary message, professional celebration"
-};
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: { id: string } 
+}): Promise<Metadata> {
+  return {
+    title: "Add Work Anniversary Wishes | Happy work anniversary",
+    description: "Share your personal message and wishes for a colleague's work anniversary celebration. Add your contribution to make their professional milestone special.",
+    keywords: "work anniversary wishes, work anniversary message, professional celebration",
+    alternates: {
+      canonical: `https://www.happyworkanniversary.net/contribute/${params.id}`,
+    }
+  };
+}
 
 export default function ContributePage({ params }: { params: { id: string } }) {
   return (

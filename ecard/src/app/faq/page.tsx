@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Find answers to frequently asked questions about happy work anniversary celebrations, message ideas, and how to create memorable work anniversary experiences for colleagues.",
   keywords: "work anniversary, work anniversary messages, work anniversary wishes, work anniversary celebration",
   alternates: {
-    canonical: "/faq",
+    canonical: "https://www.happyworkanniversary.net/faq",
   },
 };
 

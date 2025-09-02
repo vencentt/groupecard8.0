@@ -9,9 +9,6 @@ export const metadata: Metadata = {
   title: "Create Work Anniversary Cards Online | Happy Work Anniversary",
   description: "Create memorable happy work anniversary celebrations with personalized messages from the team. Recognize professional milestones with thoughtful digital cards.",
   keywords: "happy work anniversary, work anniversary cards, work anniversary celebrations, work anniversary wishes, professional milestones",
-  alternates: {
-    canonical: "/",
-  },
 };
 
 export default function Home() {

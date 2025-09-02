@@ -43,6 +43,7 @@ Disallow: /api/
 Disallow: /manage/
 Disallow: /contribute/
 Disallow: /cdn-cgi/
+Disallow: /cdn-cgi/l/email-protection
 
 # 站点地图
 Sitemap: https://www.happyworkanniversary.net/sitemap.xml

@@ -1,37 +1,12 @@
-import { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Mail, Star } from "lucide-react";
-import { CardHeader as CelebrationCardHeader } from "@/components/celebration/card-header";
+import { Star } from "lucide-react";
+import { CardHeader as CelebrationCardHeader, gradientColors } from "@/components/celebration/card-header";
 import Script from "next/script";
-
-export const metadata: Metadata = {
-  title: "Preview Work Anniversary Cards & Wishes | Happy Work Anniversary",
-  description: "Preview our beautiful work anniversary cards with happy work wishes before creating your own celebration. Personalize messages for colleagues' work milestones.",
-  keywords: ["happy work wishes", "work anniversary card", "anniversary wishes", "colleague celebration", "work milestone"],
-  openGraph: {
-    title: "Preview Work Anniversary Cards & Wishes | Happy Work Anniversary",
-    description: "Preview our beautiful work anniversary cards with happy work wishes before creating your own celebration.",
-    type: "website",
-    url: "https://www.happyworkanniversary.net/preview",
-    images: [
-      {
-        url: "https://www.happyworkanniversary.net/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Work Anniversary Card Preview",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Preview Work Anniversary Cards & Wishes",
-    description: "Preview our beautiful work anniversary cards with happy work wishes before creating your own celebration.",
-    images: ["https://www.happyworkanniversary.net/og-image.jpg"],
-  },
-};
+import { useState } from "react";
 
 // 示例祝福数据
 const exampleWishes = [
@@ -66,6 +41,9 @@ const exampleWishes = [
 ];
 
 export default function PreviewPage() {
+  // 添加颜色选择状态
+  const [selectedGradient, setSelectedGradient] = useState(gradientColors[0].gradient);
+  
   // 添加结构化数据
   const jsonLd = {
     "@context": "https://schema.org",
@@ -137,6 +115,9 @@ export default function PreviewPage() {
           <CelebrationCardHeader 
             title={`Happy ${years}${getOrdinalSuffix(years)} Work Anniversary!`}
             description={`Celebrating Alex Morgan from Marketing Team on ${formatDate(new Date().toISOString())}`}
+            gradientColor={selectedGradient}
+            onColorChange={setSelectedGradient}
+            showColorPicker={true}
           />
           
           {/* 祝福墙 */}
